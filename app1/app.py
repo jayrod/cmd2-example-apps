@@ -8,23 +8,15 @@
     5) How to add custom command aliases using the alias command
     6) Shell-like capabilities
 """
-from typing import List
-import cmd2
-from cmd2 import (
-    Bg,
-    Fg,
-    style,
-    Cmd2ArgumentParser,
-    with_argparser,
-)
-from cmd2 import CommandSet
-
 import threading
 from queue import Queue
+from typing import List
+
+from cmd2 import Cmd, Cmd2ArgumentParser, CommandSet, with_argparser, Statement
 from sub_command import TestCS
 
 
-class BasicApp(cmd2.Cmd):
+class BasicApp(Cmd):
 
     def __init__(self):
         super().__init__(
@@ -90,15 +82,11 @@ class BasicApp(cmd2.Cmd):
             self._stop_event.wait(10)
 
 
-    def do_intro(self, _):
-        """Display the intro banner"""
-        self.poutput(self.intro)
-
     parser = Cmd2ArgumentParser()
     parser.add_argument('alert_text', help='Alert text')
 
     @with_argparser(parser)
-    def do_add_alert(self, parms: cmd2.Statement):
+    def do_add_alert(self, parms: Statement):
         self.alert_queue.put(parms.alert_text)
 
 if __name__ == '__main__':

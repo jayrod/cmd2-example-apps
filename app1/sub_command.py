@@ -1,10 +1,7 @@
-from cmd2 import CommandSet, Statement, Cmd2ArgumentParser, with_argparser
+from cmd2 import Cmd2ArgumentParser, CommandSet, Statement, with_argparser
 
 
 class TestCS(CommandSet):
-    def __init__(self):
-        super().__init__()
-
 
     parser = Cmd2ArgumentParser()
     parser.add_argument('alert_text', help='Alert text')
