@@ -19,10 +19,7 @@ from sub_command import TestCS
 class BasicApp(Cmd):
 
     def __init__(self):
-        super().__init__(
-            persistent_history_file='cmd2_history.dat',
-            include_ipy=True,
-        )
+        super().__init__()
 
         # Alert Queue
         self.alert_queue = Queue()
@@ -57,6 +54,11 @@ class BasicApp(Cmd):
             self._alerter_thread.join()
 
     def _get_all_alerts(self) -> List[str]:
+        """Retrieves and removes all alerts that have been added to the thread safe alert queue object.
+
+        Returns:
+            List[str]: All alerts as a list of strings
+        """
         alerts = []
         while not self.alert_queue.empty():
             alerts.append(self.alert_queue.get())
@@ -64,7 +66,7 @@ class BasicApp(Cmd):
         return alerts
 
     def _alerter_thread_func(self) -> None:
-        """Prints alerts and updates the prompt any time the prompt is showing"""
+        """Prints alerts """
 
         while not self._stop_event.is_set():
             # Always acquire terminal_lock before printing alerts or updating the prompt
@@ -73,6 +75,7 @@ class BasicApp(Cmd):
                 
                 # print all alerts in the queue
                 alerts = self._get_all_alerts()
+                
                 if alerts:
                     [self.async_alert(alert) for alert in alerts]
 
@@ -87,6 +90,8 @@ class BasicApp(Cmd):
 
     @with_argparser(parser)
     def do_add_alert(self, parms: Statement):
+        """ Adds an alert for later processing
+        """
         self.alert_queue.put(parms.alert_text)
 
 if __name__ == '__main__':
