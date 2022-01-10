@@ -12,9 +12,8 @@ from threading import Event, Thread
 from time import sleep
 
 from cmd2 import Cmd
-from RandomWordGenerator import RandomWord
-
 from first import FirstCommandSet
+from RandomWordGenerator import RandomWord
 
 
 class App(Cmd):
