@@ -6,6 +6,7 @@ This project aims to help budding cmd2 application designers with more advanced 
 | Name | Description                          |
 |------|--------------------------------------|
 | [App1](app1/README.md) | Asynchronous alerts with CommandSets |
+| [App2](app2) | Rich console integration with cmd2|
 
 
 ## Contributing
@@ -16,6 +17,7 @@ Pull requests are welcome. Any additional cmd2 apps must be runnable and contain
   * [Documentation](https://cmd2.readthedocs.io/en/stable/)
   * [Issues](https://github.com/python-cmd2/cmd2/issues)
   * [Discord](https://discord.gg/Kd5Kw6aW9N)
-
+* [Rich] (https://rich.readthedocs.io/en/stable/index.html)
+  
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

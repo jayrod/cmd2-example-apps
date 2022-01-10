@@ -2,7 +2,7 @@
 A Minimal example demonstrating the following:
 
 1) Cmd2 Thread registration
-2) CommandSets
+2) CommandSet interaction with main application instance.
 
 This example app is based on the [async printing](https://github.com/python-cmd2/cmd2/blob/master/examples/async_printing.py) cmd2 example. 
 
@@ -28,3 +28,7 @@ be repeated frequently when using `CommandSet` organization.
  self._cmd.alert_queue.put(parms.alert_text[::-1])
 ```
 
+## Requirements
+
+* python >= 3.7
+* cmd2 >= 2.3.3
