@@ -7,6 +7,7 @@ This project aims to help budding cmd2 application designers with more advanced 
 |------|--------------------------------------|
 | [App1](app1/README.md) | Asynchronous alerts with CommandSets |
 | [App2](app2) | Rich console integration with cmd2|
+| [App3](app3) | Large application organization with command search |
 
 
 ## Contributing
