@@ -108,11 +108,18 @@ class BasicApp(Cmd):
         # If less than 10 items just return all
         if len(results) < 11:
             [data_list.append([i.command_info.command, i.command_info.docstring]) for i in results]
+
+            # Save all results for scripted users
+            self.last_result = results
         else:
             # Limit to top 10 results
             top_ten = results[-10:]
+
+            # Save top ten results for scripted users
+            self.last_result = top_ten
             [data_list.append([i.command_info.command, i.command_info.docstring]) for i in top_ten]
 
+        # geneate table and print
         at = AlternatingTable(columns)
         table = at.generate_table(data_list)
         self.poutput(table)
