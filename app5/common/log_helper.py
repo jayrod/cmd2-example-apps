@@ -1,7 +1,6 @@
-
 def exception_logger(logger):
     """
-    A decorator that wraps the passed in function and logs 
+    A decorator that wraps the passed in function and logs
     exceptions should one occur
 
     @param logger: The logging object

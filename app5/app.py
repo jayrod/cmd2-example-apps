@@ -21,7 +21,6 @@ def configure_logger():
 
 
 class BasicApp(Cmd):
-
     def __init__(self):
         logger.info(f"Initializing {self.__class__.__name__}")
 
@@ -47,11 +46,12 @@ class BasicApp(Cmd):
 
     @exception_logger(logger)
     def do_simple(self, _: Statement):
-        """ simple stuff"""
+        """simple stuff"""
 
     def _log_debug(self, message: str) -> None:
         if self.debug:
             logger.debug(message)
+
 
 if __name__ == "__main__":
 

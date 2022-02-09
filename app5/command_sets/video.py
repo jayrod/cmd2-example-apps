@@ -9,9 +9,10 @@ from cmd2 import (
     with_argparser,
     with_default_category,
 )
+from loguru import logger
+
 from common.helper import rand_file
 from common.log_helper import exception_logger
-from loguru import logger
 
 
 @dataclass
@@ -19,6 +20,7 @@ class AudioJob:
     dvd_drive: str
     codec: str
     output_file: Path
+
 
 @with_default_category("Ripper")
 class Video_CS(CommandSet):
@@ -47,7 +49,7 @@ class Video_CS(CommandSet):
         self._cmd._log_debug(f"DVD Drive: {dvd_drive}")
 
         # Rip audio
-        self._cmd.poutput(f"Ripping video from {dvd_drive}")        
+        self._cmd.poutput(f"Ripping video from {dvd_drive}")
         video_file = Path(rand_file(parms.codec).name)
 
         # Create audio job object
