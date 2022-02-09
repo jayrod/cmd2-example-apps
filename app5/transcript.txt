@@ -1,0 +1,6 @@
+(Cmd) rip_audio .aac 
+Ripping audio from D
+.+?
+(Cmd) rip_video .mkv 
+Ripping video from D
+.
