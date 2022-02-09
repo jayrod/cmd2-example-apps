@@ -38,6 +38,7 @@ class Audio_CS(CommandSet):
         help="Type of audio codec to use",
     )
 
+    @exception_logger(logger)
     @with_argparser(arg_parser)
     def do_rip_audio(self, parms: Statement):
         """Rips audio from DVD"""

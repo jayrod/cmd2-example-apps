@@ -38,6 +38,7 @@ class Video_CS(CommandSet):
     )
 
     @with_argparser(arg_parser)
+    @exception_logger(logger)
     def do_rip_video(self, parms: Statement):
         """Rips video from DVD"""
 
