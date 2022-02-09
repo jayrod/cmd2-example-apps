@@ -45,6 +45,10 @@ class BasicApp(Cmd):
         )
         logger.debug(f"Output: {self.output_folder}")
 
+    @exception_logger(logger)
+    def do_simple(self, _: Statement):
+        """ simple stuff"""
+
     def _log_debug(self, message: str) -> None:
         if self.debug:
             logger.debug(message)
