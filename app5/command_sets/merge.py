@@ -13,5 +13,5 @@ class Merge_CS(CommandSet):
     @exception_logger
     def do_merge(self, _: Statement):
         """Merging audio and video"""
-
+        self._cmd.poutput("Merged everything")
         logger.info(f"Finished merge")
