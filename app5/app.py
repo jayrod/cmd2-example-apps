@@ -3,7 +3,6 @@
 """A simple example demonstrating the following:
     1) DEMONSTRABLE ITEMS
 """
-import functools
 import sys
 from pathlib import Path
 
@@ -21,20 +20,20 @@ def configure_logger():
 
 
 class BasicApp(Cmd):
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         logger.info(f"Initializing {self.__class__.__name__}")
 
-        super().__init__()
+        super().__init__(*args, **kwargs)
         logger.debug(f"Loaded Command Sets: {self._installed_command_sets}")
+
+        self.self_in_py = True
 
         # Set intro
         self.intro = get_banner()
 
         # Add setting to point to DVD Drive
         self.dvd_drive: str = "D"
-        self.add_settable(
-            Settable("dvd_drive", str, "Drive letter for DVD device", self)
-        )
+        self.add_settable(Settable("dvd_drive", str, "Drive letter for DVD device", self))
         logger.debug(f"DVD drive set to {self.dvd_drive}")
 
         # Add path output folder
@@ -44,7 +43,7 @@ class BasicApp(Cmd):
         )
         logger.debug(f"Output: {self.output_folder}")
 
-    @exception_logger(logger)
+    @exception_logger
     def do_simple(self, _: Statement):
         """simple stuff"""
 
@@ -59,7 +58,7 @@ if __name__ == "__main__":
     logger.info("Start of application")
 
     try:
-        app = BasicApp()
+        app = BasicApp(include_ipy=True)
         app.cmdloop()
         logger.info("Exited Command Loop gracefully")
     except Exception:

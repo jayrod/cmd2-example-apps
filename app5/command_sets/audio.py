@@ -9,10 +9,9 @@ from cmd2 import (
     with_argparser,
     with_default_category,
 )
-from loguru import logger
-
 from common.helper import rand_file
 from common.log_helper import exception_logger
+from loguru import logger
 
 
 @dataclass
@@ -39,14 +38,13 @@ class Audio_CS(CommandSet):
         help="Type of audio codec to use",
     )
 
-    @exception_logger(logger)
+    @exception_logger
     @with_argparser(arg_parser)
     def do_rip_audio(self, parms: Statement):
         """Rips audio from DVD"""
 
         # Get DVD drive info
         dvd_drive = self._cmd.dvd_drive
-        self._cmd._log_debug(f"DVD Drive: {dvd_drive}")
 
         # Rip audio
         self._cmd.poutput(f"Ripping audio from {dvd_drive}")
@@ -55,8 +53,6 @@ class Audio_CS(CommandSet):
         # Create audio job object
         audio_job = AudioJob(dvd_drive, parms.codec, audio_file)
         self._cmd.poutput(f"Results located @ {audio_file}")
-        logger.info(f"Executed audio rip command")
 
         # Save last result and log
         self._cmd.last_result = audio_job
-        self._cmd._log_debug(audio_job)

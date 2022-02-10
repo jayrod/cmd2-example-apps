@@ -9,10 +9,9 @@ from cmd2 import (
     with_argparser,
     with_default_category,
 )
-from loguru import logger
-
 from common.helper import rand_file
 from common.log_helper import exception_logger
+from loguru import logger
 
 
 @dataclass
@@ -40,13 +39,12 @@ class Video_CS(CommandSet):
     )
 
     @with_argparser(arg_parser)
-    @exception_logger(logger)
+    @exception_logger
     def do_rip_video(self, parms: Statement):
         """Rips video from DVD"""
 
         # Get DVD drive info
         dvd_drive = self._cmd.dvd_drive
-        self._cmd._log_debug(f"DVD Drive: {dvd_drive}")
 
         # Rip audio
         self._cmd.poutput(f"Ripping video from {dvd_drive}")
@@ -55,8 +53,6 @@ class Video_CS(CommandSet):
         # Create audio job object
         video_job = AudioJob(dvd_drive, parms.codec, video_file)
         self._cmd.poutput(f"Results located @ {video_file}")
-        logger.info(f"Executed video rip command")
 
         # Save last result and log
         self._cmd.last_result = video_job
-        self._cmd._log_debug(video_job)

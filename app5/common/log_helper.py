@@ -1,23 +1,38 @@
-def exception_logger(logger):
-    """
-    A decorator that wraps the passed in function and logs
-    exceptions should one occur
+from functools import wraps
+from typing import Callable
 
-    @param logger: The logging object
-    """
+from cmd2 import Cmd, CommandSet
+from loguru import logger
 
-    def decorator(func):
-        logger.info(f"Exception decorator applied to {func.__name__}")
 
-        def wrapper(*args, **kwargs):
+def exception_logger(func: Callable) -> Callable:
+    """A logger decorator"""
 
-            statement = args[1]
+    @wraps(func)
+    def _empty_decorator(self, *args, **kwargs):
 
-            logger.info(f"Called Command {statement.command}")
-            logger.debug(f"Statement arguments: {statement.arg_list}")
+        # Get statements from args
+        statements = [i for i in args if hasattr(i, "command") if hasattr(i, "arg_list")]
 
-            return func(*args, **kwargs)
+        for statement in statements:
+            # Patch the logger so that it appears to come from the called function
+            logger.patch(lambda r: r.update(function=func.__name__)).info(
+                f"Command: {statement.command}"
+            )
+            logger.patch(lambda r: r.update(function=func.__name__)).debug(
+                f"Statement arguments: {statement.arg_list}"
+            )
 
-        return wrapper
+        func(self, *args, **kwargs)
 
-    return decorator
+        # save last result if available
+        if issubclass(type(self), CommandSet):
+            lr = self._cmd.last_result
+        if issubclass(type(self), Cmd):
+            lr = self.last_result
+
+        logger.patch(lambda r: r.update(function=func.__name__)).debug(f"Last Result: {lr}")
+
+    _empty_decorator.__doc__ = func.__doc__
+
+    return _empty_decorator
