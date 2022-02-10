@@ -9,6 +9,7 @@ This project aims to help budding cmd2 application designers with more advanced 
 | [App2](app2) | Rich console integration with cmd2|
 | [App3](app3) | Large application organization with command search |
 | [App4](app4) | Persistent file history with command parameter parsing and completion|
+| [App5](app5) | Logging with loguru library and creation of a command logging decorator|
 
 
 ## Contributing
@@ -19,7 +20,8 @@ Pull requests are welcome. Any additional cmd2 apps must be runnable and contain
   * [Documentation](https://cmd2.readthedocs.io/en/stable/)
   * [Issues](https://github.com/python-cmd2/cmd2/issues)
   * [Discord](https://discord.gg/Kd5Kw6aW9N)
-* [Rich] (https://rich.readthedocs.io/en/stable/index.html)
+* [Rich](https://rich.readthedocs.io/en/stable/index.html)
+* [Loguru](https://github.com/Delgan/loguru)
   
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
