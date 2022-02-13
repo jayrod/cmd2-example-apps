@@ -18,7 +18,7 @@ from cmd2 import (
 from cmd2.table_creator import AlternatingTable, BorderedTable, Column
 from thefuzz import fuzz
 
-from command_sets import *
+from app3.command_sets import *
 
 
 @dataclass(order=True)
@@ -38,7 +38,7 @@ class SearchResult:
         self.sort_index = self.fuzz_ratio
 
 
-class BasicApp(Cmd):
+class App(Cmd):
     def __init__(self):
         shortcuts = DEFAULT_SHORTCUTS
         shortcuts.update({"/": "search_commands"})
@@ -125,6 +125,10 @@ class BasicApp(Cmd):
         self.poutput(table)
 
 
-if __name__ == "__main__":
-    app = BasicApp()
+def main():
+
+    app = App()
     app.cmdloop()
+
+if __name__ == "__main__":
+    main()

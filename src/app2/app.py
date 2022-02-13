@@ -12,8 +12,9 @@ from threading import Event, Thread
 from time import sleep
 
 from cmd2 import Cmd
-from first import FirstCommandSet
 from RandomWordGenerator import RandomWord
+
+from .first import FirstCommandSet
 
 
 class App(Cmd):
@@ -84,7 +85,10 @@ class App(Cmd):
         self.sim_thread.join()
 
 
-if __name__ == "__main__":
+def main():
 
     c = App()
     c.cmdloop()
+
+if __name__ == "__main__":
+    main()

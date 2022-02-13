@@ -11,18 +11,17 @@ from typing import List
 
 from cmd2 import Cmd, Statement
 
-from command_sets import *
-from common.utils import AppFileManager
+from app4.command_sets import *
+from app4.common.utils import AppFileManager
 
 __app_name__ = "App4"
 
 
-class BasicApp(Cmd):
+class App(Cmd):
     def __init__(self, **kwargs):
         """Basic cmd2 application
         kwargs contains a passed in custom variable
         """
-
         # Get application manager object passed in
         self.app_man = kwargs.get("application_manager")
 
@@ -47,13 +46,16 @@ class BasicApp(Cmd):
         ]
 
 
-if __name__ == "__main__":
+def main():
+
 
     # Create application file manager object
     app_man = AppFileManager(__app_name__)
 
     # Create history and cache directories
     app_man.create_hist_dir()
-
-    app = BasicApp(application_manager=app_man)
+    app = App(application_manager=app_man)
     app.cmdloop()
+
+if __name__ == "__main__":
+    main()

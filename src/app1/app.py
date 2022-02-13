@@ -17,7 +17,7 @@ from cmd2 import Cmd, Cmd2ArgumentParser, CommandSet, Statement, with_argparser
 from .sub_command import TestCS
 
 
-class BasicApp(Cmd):
+class App(Cmd):
     def __init__(self):
         super().__init__()
 
@@ -94,7 +94,10 @@ class BasicApp(Cmd):
         """Adds an alert for later processing"""
         self.alert_queue.put(parms.alert_text)
 
+def main():
+
+    app = App()
+    app.cmdloop()
 
 if __name__ == "__main__":
-    app = BasicApp()
-    app.cmdloop()
+    main()
