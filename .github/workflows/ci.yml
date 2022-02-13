@@ -22,5 +22,5 @@ jobs:
           pip install pytest
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi 
       - name: execute py script # run the run.py to get the latest data
-            run: |
-              python pytest_all.py
+          run: |
+            python pytest_all.py
