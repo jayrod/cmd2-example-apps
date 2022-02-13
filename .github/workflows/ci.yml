@@ -21,5 +21,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install pytest
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi 
+      - name: Install Applications
+        run: pip install .
       - name: App Unit tests
         run: python -m pytest 
