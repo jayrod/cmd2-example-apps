@@ -13,7 +13,8 @@ from queue import Queue
 from typing import List
 
 from cmd2 import Cmd, Cmd2ArgumentParser, CommandSet, Statement, with_argparser
-from sub_command import TestCS
+
+from .sub_command import TestCS
 
 
 class BasicApp(Cmd):
