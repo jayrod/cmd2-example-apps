@@ -1,5 +1,12 @@
-cmd2
-rich >= 11.0.0
-thefuzz == 0.19.0
-xdg==5.1.1
-loguru==0.6.0
+attrs==21.4.0
+cmd2==2.3.3
+cmd2-ext-test==2.0.0
+iniconfig==1.1.1
+packaging==21.3
+pluggy==1.0.0
+py==1.11.0
+pyparsing==3.0.7
+pyperclip==1.8.2
+pytest==7.0.1
+tomli==2.0.1
+wcwidth==0.2.5
