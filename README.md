@@ -2,6 +2,9 @@
 
 This project aims to help budding cmd2 application designers with more advanced techniques and nuances of the cmd2 framework. 
 
+![Integration Status](https://github.com/jayrod/cmd2-example-apps/actions/workflows/ci.yml/badge.svg)
+
+
 ## TOC
 | Name | Description                          |
 |------|--------------------------------------|
