@@ -7,7 +7,6 @@ Logging example
 3) Automatic logging of commands via decorator
 4) Using dataclasses for command results
 5) Command completion using simple choices provider  
-6) Use of ipy
 ## Application Design
 
 This sample application introduces a few simple cmd2 features and attempts an intermediate to advanced technique to make logging automatic for decorated commands. We rely on the easy use of the [loguru](https://github.com/Delgan/loguru) library. This fictional application is meant to simulate the good old days of ripping content from DVD's for electronic storage. There were a number of tools required at the time that did many different small parts of the process. One item would rip video, another audio and finally a tool that would bring both parts back together to create a whole. 
@@ -123,3 +122,4 @@ While this decorator is a bit complicated it cuts down drastically how much time
 * python >= 3.7
 * cmd2 >= 2.3.3
 * loguru==0.6.0
+* xdg

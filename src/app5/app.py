@@ -1,28 +1,43 @@
 #!/usr/bin/env python3
 # coding=utf-8
 """A simple example demonstrating the following:
-    1) DEMONSTRABLE ITEMS
+    1) Use of loguru library 
+    2) Use of intro banner
+    3) Automatic logging of commands via decorator
+    4) Using dataclasses for command results
+    5) Command completion using simple choices provider  
 """
 import sys
 from pathlib import Path
 
 from cmd2 import Cmd, Settable, Statement
 from loguru import logger
+from xdg import XDG_CACHE_HOME
 
-from command_sets.audio import Audio_CS
-from command_sets.merge import Merge_CS
-from command_sets.video import Video_CS
-from common.banner import get_banner
-from common.log_helper import exception_logger
+from app5.command_sets.audio import Audio_CS
+from app5.command_sets.merge import Merge_CS
+from app5.command_sets.video import Video_CS
+from app5.common.banner import get_banner
+from app5.common.log_helper import exception_logger
 
 
 def configure_logger():
+
+    # Remove default logger that prints to stdout
     logger.remove()
-    logger.add("file_1.log", rotation="5 MB")
-    logger.add("file.ser.log", serialize=True)
+
+    # Consistent path to log files
+    log_file = Path(XDG_CACHE_HOME).joinpath('App5', 'run.log')
+    
+    # if it doesn't exist then create it
+    log_file.parent.mkdir(parents=True, exist_ok=True)
+
+    # Log all out put to log file 
+    logger.add(log_file, rotation="5 MB")
 
 
-class BasicApp(Cmd):
+class App(Cmd):
+
     def __init__(self, *args, **kwargs):
         logger.info(f"Initializing {self.__class__.__name__}")
 
@@ -42,16 +57,11 @@ class BasicApp(Cmd):
             Settable("output_folder", Path, "Output folder to save ripped DVDs", self)
         )
 
-    @exception_logger
-    def do_simple(self, _: Statement):
-        """simple stuff"""
-
     def _log_debug(self, message: str) -> None:
         if self.debug:
             logger.debug(message)
 
-
-if __name__ == "__main__":
+def main():
 
     configure_logger()
     logger.info("Start of application")
@@ -62,7 +72,7 @@ if __name__ == "__main__":
         cs = [Audio_CS(), Merge_CS(), Video_CS()]
         logger.debug(f"Command Sets: {cs}")
 
-        app = BasicApp(command_sets=cs, auto_load_commands=False)
+        app = App(command_sets=cs, auto_load_commands=False)
         logger.info("Cmd App Created")
 
         app.cmdloop()
@@ -74,4 +84,7 @@ if __name__ == "__main__":
         sys.exit(-1)
 
     logger.info("Application shutdown complete")
-    sys.exit()
+    return 0
+
+if __name__ == "__main__":
+    sys.exit(main())
