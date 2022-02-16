@@ -5,7 +5,8 @@
 """
 
 from cmd2 import Cmd
-from {{cookiecutter.app_name}}.command_sets import *
+
+from app6.command_sets import *
 
 
 class App(Cmd):
