@@ -106,5 +106,4 @@ top ten most likely matches to their query.
 ## Requirements
 
 * python == 3.7
-* cmd2 == 2.3.3
 * thefuzz == 0.19.0

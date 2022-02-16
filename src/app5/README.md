@@ -121,6 +121,5 @@ While this decorator is a bit complicated it cuts down drastically how much time
 ## Requirements
 
 * python >= 3.7
-* cmd2 >= 2.3.3
 * loguru==0.6.0
 * xdg

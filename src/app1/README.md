@@ -31,4 +31,3 @@ be repeated frequently when using `CommandSet` organization.
 ## Requirements
 
 * python >= 3.7
-* cmd2 >= 2.3.3

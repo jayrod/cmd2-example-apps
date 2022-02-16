@@ -42,12 +42,13 @@ class family_CS(CommandSet):
         return [m.name for m in self._family]
 
     def _all_unfinished_chores(self) -> List[str]:
-
+        """ Used to populate chore list when no name given """
         return list(set([c.name for m in self._family
                     for c in m.chores
                         if not c.is_done]))
 
     def _get_unfinished_chores(self, name: str) -> List[Chore]:
+        """ Gets unfinished chores for a given family member """
         if not name:
             return []
 
@@ -59,6 +60,43 @@ class family_CS(CommandSet):
             return []
 
         return [chore.name for chore in fm[0].chores if not chore.is_done]
+
+    def _choices_arg_tokens(self, arg_tokens: Dict[str, List[str]]) -> List[str]:
+        """Main custom conditional tab completion function"""
+
+        # Retrieve the `name` value from list of tokenized arguments
+        family_name = arg_tokens.get('name')
+        chore_name = arg_tokens.get('chore')
+
+        # If a family name was present
+        if family_name:
+            # Return the list of chores for the given family member
+            return self._get_unfinished_chores(family_name[0])
+
+        # If no family name return all possible unfinished chores
+        return self._all_unfinished_chores()
+
+    def _complete_chore(self, name: str, chore_name: str) -> bool:
+        """ Updates the family collection releasing a member from chore duty"""
+
+        # Find the family member
+        fm = [m for m in self._family if m.name == name]
+
+        # family member not found
+        if not fm:
+            return False
+
+        # Search for chore 
+        for chore in fm[0].chores:
+            if chore.name == chore_name:
+                # Remove the old chore 
+                fm[0].chores.remove(chore)
+                # Add new chore that is now done
+                fm[0].chores.append(Chore(chore_name, True))
+                return True
+
+        return False
+
 
     def do_show_family(self, _: Statement):
         """Shows all family members"""
@@ -80,40 +118,6 @@ class family_CS(CommandSet):
 
         # Set return result
         self._cmd.last_result = self._family
-
-    def _choices_arg_tokens(self, arg_tokens: Dict[str, List[str]]) -> List[str]:
-
-        # Retrieve the `name` value from list of tokenized arguments
-        family_name = arg_tokens.get('name')
-        chore_name = arg_tokens.get('chore')
-
-        # If a family name was present
-        if family_name:
-            # Return the list of chores for the given family member
-            return self._get_unfinished_chores(family_name[0])
-
-        # If no family name return all possible unfinished chores
-        return self._all_unfinished_chores()
-
-    def _complete_chore(self, name: str, chore_name: str) -> bool:
-
-        # Find the family member
-        fm = [m for m in self._family if m.name == name]
-
-        # family member not found
-        if not fm:
-            return False
-
-        # Search for chore 
-        for chore in fm[0].chores:
-            if chore.name == chore_name:
-                # Remove the old chore 
-                fm[0].chores.remove(chore)
-                # Add new chore that is now done
-                fm[0].chores.append(Chore(chore_name, True))
-                return True
-
-        return False
 
     arg_parser = Cmd2ArgumentParser()
     arg_parser.add_argument('--name', choices_provider=_member_provider, help="Family Member")

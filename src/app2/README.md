@@ -48,5 +48,4 @@ While this command executes a ***mode*** change it may not be necessary to have 
 ## Requirements
 
 * python >= 3.7
-* cmd2 >= 2.3.3
 * rich >= 11.0.0
