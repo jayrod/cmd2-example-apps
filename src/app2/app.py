@@ -28,8 +28,8 @@ class App(Cmd):
         self.completed = Queue()
 
         # Register pre and post hooks
-        self.register_preloop_hook(self.preloop_hook)
-        self.register_postloop_hook(self.postloop_hook)
+        self.register_preloop_hook(self._preloop_hook)
+        self.register_postloop_hook(self._postloop_hook)
 
         # globals
         self.stop_event = Event()
@@ -64,7 +64,7 @@ class App(Cmd):
 
             sleep(1)
 
-    def preloop_hook(self) -> None:
+    def _preloop_hook(self) -> None:
 
         # Event object
         self.stop_event.clear()
@@ -79,7 +79,7 @@ class App(Cmd):
         # Start sim thread
         self.sim_thread.start()
 
-    def postloop_hook(self) -> None:
+    def _postloop_hook(self) -> None:
 
         self.stop_event.set()
         self.sim_thread.join()

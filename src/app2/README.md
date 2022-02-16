@@ -5,6 +5,8 @@ This is a sample cmd2 application to showcase async rich console integration.
 2) CommandSet interaction with main cmd2 instance
 3) Rich console integration
 
+[![asciicast](https://asciinema.org/a/469519.svg)](https://asciinema.org/a/469519)
+
 ## Application Design
 app.py is responsible for setting up all of the thread functionality and does not contain any user commands. While the first.py file houses the main featured logic for showing off the rich Live panel. It should be noted that the add and complete commands are superflous and not necessary for execution. 
 
