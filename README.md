@@ -8,7 +8,7 @@ This project aims to help budding cmd2 application designers with more advanced 
 ## TOC
 | Name | Description                          | Asciinema |
 |------|--------------------------------------|-----------|
-| [App1](src/app1/README.md) | Asynchronous alerts with CommandSets | |
+| [App1](src/app1/README.md) | Asynchronous alerts with CommandSets |[screencast](https://asciinema.org/a/469482) |
 | [App2](src/app2) | Rich console integration with cmd2| |
 | [App3](src/app3) | Large application organization with command search | |
 | [App4](src/app4) | Persistent file history with command parameter parsing and completion| |

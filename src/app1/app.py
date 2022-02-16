@@ -12,7 +12,16 @@ import threading
 from queue import Queue
 from typing import List
 
-from cmd2 import Cmd, Cmd2ArgumentParser, CommandSet, Statement, with_argparser
+from cmd2 import (
+    Cmd,
+    Cmd2ArgumentParser,
+    CommandSet,
+    Fg,
+    Statement,
+    ansi,
+    with_argparser,
+    with_category,
+)
 
 from .sub_command import TestCS
 
@@ -79,7 +88,8 @@ class App(Cmd):
                 alerts = self._get_all_alerts()
 
                 if alerts:
-                    [self.async_alert(alert) for alert in alerts]
+                    # color the alert text
+                    [self.async_alert(ansi.style(alert, fg=Fg.GREEN)) for alert in alerts]
 
                 # Don't forget to release the lock
                 self.terminal_lock.release()
@@ -89,6 +99,7 @@ class App(Cmd):
     parser = Cmd2ArgumentParser()
     parser.add_argument("alert_text", help="Alert text")
 
+    @with_category("ALERT")
     @with_argparser(parser)
     def do_add_alert(self, parms: Statement):
         """Adds an alert for later processing"""
