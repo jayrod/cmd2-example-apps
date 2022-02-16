@@ -1,7 +1,11 @@
 #!/usr/bin/env python3
 # coding=utf-8
 """A simple example demonstrating the following:
-    1) DEMONSTRABLE ITEMS
+    1) CommandSet organization
+    2) Use of dataclasses for readability
+    3) Simple custom tab completion
+    4) Conditional tab completion
+    5) Ansi coloring of output
 """
 
 from cmd2 import Cmd

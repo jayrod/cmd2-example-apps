@@ -6,13 +6,14 @@ This project aims to help budding cmd2 application designers with more advanced 
 
 
 ## TOC
-| Name | Description                          |
-|------|--------------------------------------|
-| [App1](src/app1/README.md) | Asynchronous alerts with CommandSets |
-| [App2](src/app2) | Rich console integration with cmd2|
-| [App3](src/app3) | Large application organization with command search |
-| [App4](src/app4) | Persistent file history with command parameter parsing and completion|
-| [App5](src/app5) | Logging with loguru library and creation of a command logging decorator|
+| Name | Description                          | Asciinema |
+|------|--------------------------------------|-----------|
+| [App1](src/app1/README.md) | Asynchronous alerts with CommandSets | |
+| [App2](src/app2) | Rich console integration with cmd2| |
+| [App3](src/app3) | Large application organization with command search | |
+| [App4](src/app4) | Persistent file history with command parameter parsing and completion| |
+| [App5](src/app5) | Logging with loguru library and creation of a command logging decorator| |
+| [App6](src/app6) | Context aware conditional tab completion | [screencast](https://asciinema.org/a/469436) |
 
 
 ## Contributing
