@@ -8,6 +8,8 @@ A Minimal example demonstrating the following:
 5) Tabular cmd2 output
 6) Dataclass integration
 
+[![asciicast](https://asciinema.org/a/gkREeidWNWnLXtkCJJnDQLyD0.svg)](https://asciinema.org/a/gkREeidWNWnLXtkCJJnDQLyD0)
+
 ## Philosophy
 
 Any designer faced with the fortunate misfortune of large complex applications will seek out ways to help 
